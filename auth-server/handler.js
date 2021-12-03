@@ -89,6 +89,9 @@ const calendar = google.calendar("v3");
       // Respond with OAuth token 
       return {
         statusCode: 200,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
         body: JSON.stringify(token),
       };
     })
