@@ -59,7 +59,7 @@ const calendar = google.calendar("v3");
     };
   };
 
-
+//  Get access token
 
   module.exports.getAccessToken = async (event) => {
     // The values used to instantiate the OAuthClient are at the top of the file
@@ -100,4 +100,52 @@ const calendar = google.calendar("v3");
         body: JSON.stringify(err),
       };
     });
+};
+
+
+/* Get Calendar Events */
+
+module.exports.getCalendarEvents = async (event) => {
+  const oAuth2Client = new google.auth.OAuth2(
+    client_id,
+    client_secret,
+    redirect_uris[0]
+  );
+  const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
+  oAuth2Client.setCredentials({ access_token });
+
+  return new Promise((resolve, reject) => {
+    calendar.events.list(
+      {
+        calendarId: calendar_id,
+        auth: oAuth2Client,
+        timeMin: new Date().toISOString(),
+        singleEvents: true,
+        orderBy: "startTime",
+      },
+      (error, response) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(response);
+        }
+      }
+    );
+  })
+  .then((results) => {
+    return {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify({ events: results.data.items }),
+    };
+  })
+  .catch((err) => {
+    console.error(err);
+    return {
+      statusCode: 500,
+      body: JSON.stringify(err),
+    };
+  });
 };
