@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import App from '../App';
 import EventList from '../EventList';
+import NumberOfEvents from '../NumberOfEvents';
 import CitySearch from '../CitySearch';
 import { mockData } from '../mock-data';
 import { extractLocations, getEvents } from '../api';
@@ -66,6 +67,22 @@ describe('<App /> integration', () => {
     AppWrapper.unmount();
   });
 
+  test('App passes numberOfEvents as a prop to NumberOfEvents', () => {
+    const AppWrapper = mount(<App />);
+    const AppNumberOfEventsState = AppWrapper.state('numberOfEvents');
+    expect(AppNumberOfEventsState).not.toEqual(undefined);
+    expect(AppWrapper.find(NumberOfEvents).props().numberOfEvents).toEqual(AppNumberOfEventsState);
+    AppWrapper.unmount();
+  })
+  
+    test('user can change the number of displayed events', async () => {
+      const AppWrapper = mount(<App />);
+      const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+      NumberOfEventsWrapper.find('#NumberOfEvents').simulate('change', { target: { value: '32' } });
+      expect(AppWrapper.state('numberOfEvents')).toBe(32);
+      AppWrapper.unmount();
+    })
+  });
 
 
 
@@ -74,4 +91,4 @@ describe('<App /> integration', () => {
 
 
 
-});
+
