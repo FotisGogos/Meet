@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button'
 class Event extends Component {
   state = {
     collapsed:  true,
-    event: []
   }
 
   handleClick = () => {
@@ -12,7 +11,6 @@ class Event extends Component {
       collapsed: !this.state.collapsed,
     });
   };
-
 
   render() {
     const  { event }  = this.props;
