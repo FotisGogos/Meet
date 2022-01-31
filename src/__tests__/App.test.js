@@ -78,7 +78,7 @@ describe('<App /> integration', () => {
     test('user can change the number of displayed events', async () => {
       const AppWrapper = mount(<App />);
       const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
-      NumberOfEventsWrapper.find('#NumberOfEvents').simulate('change', { target: { value: '32' } });
+      NumberOfEventsWrapper.find('.NumberOfEvents').simulate('change', { target: { value: '32' } });
       expect(AppWrapper.state('numberOfEvents')).toBe(32);
       AppWrapper.unmount();
     })
