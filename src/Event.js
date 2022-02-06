@@ -27,17 +27,20 @@ class Event extends Component {
         <p className="location">
           {event.location}
         </p>
+        
         <Button variant="outline-info"
-          className={`${collapsed ? "show" : "hide"}-details`}
+          className={`${collapsed ? "show" : "hide"}-details-btn`}
           onClick={this.handleClick}
         >
           {collapsed ? "Show Details" : "Hide Details"}
         </Button>
-        {!collapsed &&
-          <div className={`extra-details ${this.state.collapsed ? "hide" : "show"}`}>
-            <p className="event-description">{event.description}</p>
-          </div>
-        }
+        {!collapsed && (
+                <div className="extra-details">
+                <h2 className="details-header">About event:</h2>
+            <a href={event.htmlLink} className='details-link' rel="noreferrer" target='_blank'>See details on Google Calendar</a>
+            <p className='event-description'>{event.description}</p>
+           </div>
+            )}
         </div>
 
     )
