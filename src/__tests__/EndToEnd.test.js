@@ -5,11 +5,7 @@ import puppeteer from 'puppeteer';
     let page;
     beforeAll(async () => {
       jest.setTimeout(30000);
-      browser = await puppeteer.launch({
-        headless: false,
-        slowMo: 250, // slow down by 250ms
-       ignoreDefaultArgs: ['--disable-extensions'] // ignores default setting that causes timeout errors
-      });
+      browser = await puppeteer.launch();
       page = await browser.newPage();
       await page.goto('http://localhost:3000/');
       await page.waitForSelector('.event');
@@ -25,7 +21,7 @@ import puppeteer from 'puppeteer';
     expect(eventDetails).toBeNull();
   });
 
-  //Scenario 2
+  //Scenario 2 
   test('User can expand an event to see its details', async () => {
     await page.click('.event .show-details-btn');
     const eventDetails = await page.$('.event .extra-details');
