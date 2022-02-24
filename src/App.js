@@ -5,6 +5,7 @@ import './nprogress.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
+
 import { extractLocations, getEvents } from './api';
 
 
@@ -14,7 +15,8 @@ class App extends Component {
     events: [],
     locations: [],
     numberOfEvents: 32,
-    currentLocation: "all"
+    currentLocation: "all",
+    errorText: ''
   }
 
 
@@ -53,9 +55,17 @@ class App extends Component {
 
   updateNumberOfEvents = (eventCount) => {
     const value = eventCount.target.value;
-    this.setState({
-    numberOfEvents: value
-    });
+    if (value > 32) {
+      this.setState({
+        numberOfEvents: 32,
+        errorText: 'Please select a number from 1 to 32'
+      });
+    } else {
+      this.setState({
+        numberOfEvents: value,
+        errorText: ''
+      });
+    }
     const { currentLocation } = this.state;
     this.updateEvents(currentLocation, eventCount);
     };
@@ -63,12 +73,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+       
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents}/>
         <EventList events={this.state.events} />
         <NumberOfEvents 
            numberOfEvents={this.state.numberOfEvents}
            updateNumberOfEvents={this.updateNumberOfEvents}
+           errorText ={this.state.errorText}
           />
+        
       </div>
     );
   }
