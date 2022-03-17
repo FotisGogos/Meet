@@ -28,7 +28,7 @@
 const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
   const { access_token } = await fetch(
-    ' https://qrgw0n6hx1.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode
+    'https://qrgw0n6hx1.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode
   )
     .then((res) => {
       return res.json();
@@ -55,14 +55,19 @@ const removeQuery = () => {
 };
 
  export const getEvents = async () => {
-
   NProgress.start();
 
   if (window.location.href.startsWith('http://localhost')) {
       NProgress.done();
       return mockData;
-
   }
+
+  if (!navigator.onLine) {
+    const data = localStorage.getItem("lastEvents");
+    NProgress.done();
+    return data?JSON.parse(data).events:[];;
+  }
+
 
   const token = await getAccessToken();
   if (token) {
