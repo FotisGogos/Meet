@@ -44,6 +44,7 @@ class CitySearch extends Component {
     return (
       <div className="CitySearch"> 
         <InfoAlert text={this.state.infoText} />
+        <h4 className ="SelectCity">Select for  a City</h4>
         <input
           type="text"
           className="city"
@@ -62,7 +63,6 @@ class CitySearch extends Component {
           <li 
           onClick={() => this.handleItemClicked("all")}
           >
-            
             <b>See all cities</b>
           </li>
         </ul>

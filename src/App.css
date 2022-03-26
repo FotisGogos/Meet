@@ -131,6 +131,12 @@ input[type="number"] {
   font-family: sans-serif;
 }
 
+.SelectCity {
+  position: relative;
+  top: 50px;
+  right: 10px;
+}
+
 .Alert {
   position: relative;
   height: 10px;
