@@ -34,6 +34,9 @@ input[type="number"] {
   line-height: 20px;
   align-self: center;
   height: 38px;
+  position: relative;
+  bottom: 50px;
+  margin: 60px;
 }
 
 .city {
@@ -129,8 +132,10 @@ input[type="number"] {
 }
 
 .Alert {
-  position: fixed;
-  top: 20px;
+  position: relative;
+  height: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .data-vis-wrapper {
