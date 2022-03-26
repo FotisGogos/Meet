@@ -20,7 +20,6 @@ class Alert  extends Component {
       </div>
     );
   }
-
 }
 
 class InfoAlert extends Alert {
@@ -30,7 +29,6 @@ class InfoAlert extends Alert {
   }
 
   getStyle = () => {
-   
     return {
       color: this.color,
       position: 'relative',
@@ -49,17 +47,10 @@ class ErrorAlert extends Alert {
   getStyle = () => {
     return {
       color: this.color,
-      position: 'relative',
-      top: '580px',
-      left: '510px'
-
+      position: 'absolute',
+      bottom: '-115px'
     };
   }
 }
-
-
-
-
-
 
 export { InfoAlert,ErrorAlert };
