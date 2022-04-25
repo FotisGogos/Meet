@@ -6,10 +6,10 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import WelcomeScreen from './WelcomeScreen';
+import { WarningAlert } from './Alert';
+
 
 import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
-
-
 
 class App extends Component {
   state = {
@@ -18,9 +18,9 @@ class App extends Component {
     showWelcomeScreen: undefined,
     numberOfEvents: 32,
     currentLocation: "all",
-    errorText: ''
+    errorText: '',
+    warningText: '',
   }
-
 
   async componentDidMount() {
     this.mounted = true;
@@ -82,7 +82,9 @@ class App extends Component {
         className="App" />
     return (
       <div className="App">
-       
+        <div>
+        { !navigator.onLine ? (<WarningAlert text='You are offline!' />) : (<WarningAlert text=' ' />)}
+        </div>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents}/>
         <EventList events={this.state.events} />
         <NumberOfEvents 
