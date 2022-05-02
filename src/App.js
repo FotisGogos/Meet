@@ -103,6 +103,11 @@ class App extends Component {
         </div>
         <h4>Choose your city</h4>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents}/>
+        <NumberOfEvents 
+           numberOfEvents={this.state.numberOfEvents}
+           updateNumberOfEvents={this.updateNumberOfEvents}
+           errorText ={this.state.errorText}
+          />
         <div className='data-vis-wrapper'>
           <EventGenre events={this.state.events} />
           <ResponsiveContainer 
@@ -118,11 +123,6 @@ class App extends Component {
           </ResponsiveContainer>
         </div>
         <EventList events={this.state.events} />
-        <NumberOfEvents 
-           numberOfEvents={this.state.numberOfEvents}
-           updateNumberOfEvents={this.updateNumberOfEvents}
-           errorText ={this.state.errorText}
-          />
           <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
             getAccessToken={() => { getAccessToken() }} />
       </div>
