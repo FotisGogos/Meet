@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, ResponsiveContainer,Cell } from 'recharts';
 
-const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
+const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS','Angular','AngularJS-Remote'];
 
 const EventGenre = ({ events }) => {
     const [data, setData] = useState([]); 
