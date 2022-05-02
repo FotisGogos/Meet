@@ -11,6 +11,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import WelcomeScreen from './WelcomeScreen';
+import EventGenre from './EventGenre';
 import { WarningAlert } from './Alert';
 
 
@@ -101,16 +102,20 @@ class App extends Component {
         { !navigator.onLine ? (<WarningAlert text='You are offline!' />) : (<WarningAlert text=' ' />)}
         </div>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents}/>
-        <ResponsiveContainer height={400} >
-          <ScatterChart 
-              margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
-              <CartesianGrid  strokeDasharray="3 3" />
-              <XAxis type="category" dataKey="city" name="city"  />
-              <YAxis type="number" dataKey="number" name="number of events"  />
-              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-              <Scatter data={this.getData()} fill="#8884d8" />
-          </ScatterChart>
-        </ResponsiveContainer>
+        <div className='data-vis-wrapper'>
+          <EventGenre events={this.state.events} />
+          <ResponsiveContainer 
+            height={400} >
+            <ScatterChart 
+                margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                <CartesianGrid  strokeDasharray="3 3" />
+                <XAxis type="category" dataKey="city" name="city"  />
+                <YAxis type="number" dataKey="number" name="number of events"  />
+                <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                <Scatter data={this.getData()} fill="#8884d8" />
+            </ScatterChart>
+          </ResponsiveContainer>
+        </div>
         <EventList events={this.state.events} />
         <NumberOfEvents 
            numberOfEvents={this.state.numberOfEvents}
