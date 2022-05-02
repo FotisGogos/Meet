@@ -15,10 +15,9 @@ const EventGenre = ({ events }) => {
         console.log(data);
 
     setData(data); }, [events]);
-
-
+    
   //Colors of Pie chart 
-  const colors = ["#00a1fe", "#00c46c", "#ffc928", "#f56464"];
+  const colors = ["#00a1fe", "#00c46c", "#ffc928", "#f56464","#a65cbf","#d5ed4a"];
 
   return (
     <ResponsiveContainer height={400} >
