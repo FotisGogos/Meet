@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, ResponsiveContainer,Cell } from 'recharts';
 
+const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
+
 const EventGenre = ({ events }) => {
+    const [data, setData] = useState([]); 
+    
+    useEffect(() => {
+            const data = genres.map((genre) => {
+                const value = events.filter((event) => event.summary.split(' ').includes(genre)).length;
+                return { name: genre, value};
+        }).filter(d => d.value > 0);
 
-  const [data, setData] = useState([]);
-  // eslint-disable-next-line
-  useEffect(() => { setData(() => getData());}, [events]);
+        console.log(data);
 
-  const getData = () => {
-    const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
-    const data = genres.map((genre) => {
-      const value = events.filter((event) => event.summary.split(' ').includes(genre)).length;
-      return { name: genre, value };
-    });
-    return data;
-  };
+    setData(data); }, [events]);
+
 
   //Colors of Pie chart 
   const colors = ["#00a1fe", "#00c46c", "#ffc928", "#f56464"];
