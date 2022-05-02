@@ -101,6 +101,7 @@ class App extends Component {
         <div>
         { !navigator.onLine ? (<WarningAlert text='You are offline!' />) : (<WarningAlert text=' ' />)}
         </div>
+        <h4>Choose your city</h4>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents}/>
         <div className='data-vis-wrapper'>
           <EventGenre events={this.state.events} />
