@@ -101,7 +101,7 @@ class App extends Component {
         <div>
         { !navigator.onLine ? (<WarningAlert text='You are offline!' />) : (<WarningAlert text=' ' />)}
         </div>
-        <h4>Choose your city</h4>
+        <h1 style={{"font-family": "Apple Chancery"}}>Welcome to Meet App</h1>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents}/>
         <NumberOfEvents 
            numberOfEvents={this.state.numberOfEvents}

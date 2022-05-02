@@ -89,7 +89,7 @@ input[type="number"] {
 }
 
 .details-btn {
-  padding: 15px 25px;
+  padding: 10px 10px;
   border: unset;
   border-radius: 15px;
   color: #212121;
@@ -102,6 +102,9 @@ input[type="number"] {
   box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
   transition: all 250ms;
   overflow: hidden;
+  cursor: pointer;
+  top: 12px;
+  left: 14px;
 }
 
 .details-btn::before {
