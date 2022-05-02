@@ -47,7 +47,7 @@ class ErrorAlert extends Alert {
     return {
       color: this.color,
       position: 'absolute',
-      bottom: '-115px'
+      bottom: '-135px'
     };
   }
 }
